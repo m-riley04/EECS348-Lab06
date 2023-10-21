@@ -27,7 +27,7 @@ int main() {
 
     //--STEP 1--//
     // Load matrices from file
-    Data data = matrixLoad("matrix.txt");
+    Data data = matrixLoad("matrix_input.txt");
     int size = data.size;
     int** matrix_1 = data.matrix_1;
     int** matrix_2 = data.matrix_2;
