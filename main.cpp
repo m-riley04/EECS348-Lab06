@@ -172,8 +172,6 @@ int main() {
         }
         printf("\n");
     }
-    
-    
     cout << "Matrix B" << endl;
     for (int i = 0; i < size; i++)
     {
