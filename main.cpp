@@ -63,7 +63,6 @@ Data matrixLoad(string filename) {
     // Initialize Variables
     ifstream file;
     string text;
-    string currentValue;
     int size;
     static const int maxSize = 100;
     int line = 1;
