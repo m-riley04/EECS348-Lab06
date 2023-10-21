@@ -37,7 +37,7 @@ Data matrixLoad(string filename) {
     }
     
     while (getline(file, text)) {
-        std::istringstream iss(text);
+        istringstream iss(text);
         int col = 0;
         int value;
 
