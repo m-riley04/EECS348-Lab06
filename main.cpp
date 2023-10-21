@@ -15,6 +15,7 @@ struct Data
 
 // Function Prototypes (I tried to put the struct here as well, but it is required for where it is.)
 Data matrixLoad(string filename);
+void matrixPrint(int **matrix, int size);
 int **matrixAdd(Data data);
 int **matrixSubtract(Data data);
 int **matrixProduct(Data data);
@@ -34,59 +35,24 @@ int main() {
 
     //--STEP 2--//
     cout << "\nMatrix A" << endl;
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            printf("%5i", matrix_1[i][j]);
-        }
-        printf("\n");
-    }
+    matrixPrint(matrix_1, size);
     cout << "Matrix B" << endl;
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            printf("%5i", matrix_2[i][j]);
-        }
-        printf("\n");
-    }
+    matrixPrint(matrix_2, size);
 
     //--STEP 3--//
     cout << "Matrix Sum (A + B)" << endl;
     int **addedMatrix = matrixAdd(data);
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            printf("%5i", addedMatrix[i][j]);
-        }
-        printf("\n");
-    }
+    matrixPrint(addedMatrix, size);
 
     //--STEP 4--//
     cout << "Matrix Product (A * B)" << endl;
     int **productMatrix = matrixProduct(data);
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            printf("%5i", productMatrix[i][j]);
-        }
-        printf("\n");
-    }
+    matrixPrint(productMatrix, size);
 
     //--STEP 5--//
     cout << "Matrix Difference (A - B)" << endl;
     int **subtractedMatrix = matrixSubtract(data);
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            printf("%5i", subtractedMatrix[i][j]);
-        }
-        printf("\n");
-    }
+    matrixPrint(subtractedMatrix, size);
 
     // Return from main
     return 0;
@@ -99,6 +65,7 @@ Data matrixLoad(string filename) {
     string text;
     string currentValue;
     int size;
+    static const int maxSize = 100;
     int line = 1;
     
     // Open file
@@ -107,6 +74,13 @@ Data matrixLoad(string filename) {
     // Get the first line to get the size
     getline(file, text);
     size = atoi(text.c_str());
+
+    // Check against max size
+    if (size > maxSize)
+    {
+        printf("ERROR: Size of square matrix must be less than %i!", maxSize);
+        terminate();
+    }
 
     // Allocate memory for matrices
     int **matrix_1 = new int*[size];
@@ -144,6 +118,19 @@ Data matrixLoad(string filename) {
     // Return the matrices
     Data result {size, matrix_1, matrix_2};
     return result;
+}
+
+/* Cleanly prints a given matrix*/
+void matrixPrint(int **matrix, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            printf("%5i", matrix[i][j]);
+        }
+        printf("\n");
+    }
 }
 
 /* Adds 2 matrices together and returns a single matrix */
