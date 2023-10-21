@@ -42,17 +42,14 @@ int main() {
     //--STEP 3--//
     cout << "Matrix Sum (A + B)" << endl;
     int **addedMatrix = matrixAdd(data);
-    matrixPrint(addedMatrix, size);
 
     //--STEP 4--//
     cout << "Matrix Product (A * B)" << endl;
     int **productMatrix = matrixProduct(data);
-    matrixPrint(productMatrix, size);
 
     //--STEP 5--//
     cout << "Matrix Difference (A - B)" << endl;
     int **subtractedMatrix = matrixSubtract(data);
-    matrixPrint(subtractedMatrix, size);
 
     // Return from main
     return 0;
@@ -156,6 +153,10 @@ int **matrixAdd(Data data)
         }
     }
 
+    // Print the matrix
+    matrixPrint(result, size);
+
+    // Return the matrix
     return result;
 }
 
@@ -183,6 +184,10 @@ int **matrixSubtract(Data data)
         }
     }
 
+    // Print the matrix
+    matrixPrint(result, size);
+
+    // Return the matrix
     return result;
 }
 
@@ -212,5 +217,9 @@ int **matrixProduct(Data data)
         }
     }
 
+    // Print the matrix
+    matrixPrint(result, size);
+
+    // Return the matrix
     return result;
 }
